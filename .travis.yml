@@ -1,0 +1,18 @@
+language: go
+go:
+- 1.12.x
+- master
+os:
+- linux
+- osx
+osx_image: xcode10.1
+dist: trusty
+env:
+  - GO111MODULE=on
+before_install:
+  - go get github.com/mattn/goveralls
+install: true
+script:
+  - go get -v ./...
+  - goveralls -service=travis-ci
+  - go build
