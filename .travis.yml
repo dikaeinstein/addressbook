@@ -14,5 +14,5 @@ before_install:
 install: true
 script:
   - go get -v ./...
-  - goveralls -service=travis-ci
+  - goveralls -service=travis-ci -race -package ./cmd
   - go build
