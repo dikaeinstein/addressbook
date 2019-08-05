@@ -6,21 +6,20 @@ import (
 	"log"
 	"os"
 
-	"github.com/dikaeinstein/addressbook/cmd"
+	"github.com/dikaeinstein/addressbook/pkg/command"
 )
 
 func main() {
-	// var fName = flag.String("file", "", "-file [filename]")
 	listPeopleCommand := flag.NewFlagSet("listPeople", flag.ExitOnError)
 	var lName = listPeopleCommand.String("file", "", "-file [filename]")
 	addPersonCommand := flag.NewFlagSet("addPerson", flag.ExitOnError)
 	var aName = addPersonCommand.String("file", "", "-file [filename]")
 
-	l := cmd.ListPeople{Output: os.Stdout}
-	ap := cmd.AddPerson{Input: os.Stdin}
+	l := command.ListPeople{Output: os.Stdout}
+	ap := command.AddPerson{Input: os.Stdin}
 
 	if len(os.Args) != 4 {
-		log.Fatalf("Usage: %s [cmd] -file", os.Args[0])
+		log.Fatalf("Usage: %s [cmd] -file [filename]", os.Args[0])
 	}
 
 	switch os.Args[1] {
